@@ -9,21 +9,21 @@ const auth = async(req, res, next) => {
 
         const token = req.headers.authorization.split(" ")[1];
 
-        const iscustomauth = token.length < 500;
+        // const iscustomauth = token.length < 500;
 
         let decodedata;
 
-        if(token && iscustomauth){
+        if(token){
             decodedata = jwt.verify(token, 'test');
 
             req.userId = decodedata?.id;
         }
-        else{
-            decodedata = jwt.verify(token);
+        // else{
+        //     decodedata = jwt.verify(token);
 
-            req.userId = decodedata?.sub;
+        //     req.userId = decodedata?.sub;
 
-        }
+        // }
         next();
     }
     catch(error){

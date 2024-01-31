@@ -11,6 +11,21 @@ const postSchema = mongoose.Schema({
         type: [String],
         default:[]
     },
+    comments: {
+        type: [
+            {
+                username: {
+                    type: String,
+                    default: ''
+                },
+                comment: {
+                    type: String,
+                    default: ''
+                }
+            }
+        ],
+        default:[]
+    },
     createdAt: {
         type: Date,
         default: new Date()

@@ -14,7 +14,11 @@ export const getPost = async(req,res) =>{
 }
 export const getPosts = async(req,res) =>{
     const {page} = req.query;
+    // console.log("outside try"+page)
     try{
+        // console.log(page);
+        // console.log("hi")
+
         const LIMIT = 6;
         const startIndex = (Number(page) - 1)*LIMIT;
         const total = await PostMessage.countDocuments({});
@@ -22,6 +26,7 @@ export const getPosts = async(req,res) =>{
         const posts = await PostMessage.find().sort({_id: -1}).limit(LIMIT).skip(startIndex);
 
         // const postMessages = await PostMessage.find();
+        // console.log(posts);
 
         res.status(200).json({data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total/LIMIT)});
     }

@@ -10,11 +10,7 @@ import cloudinary from 'cloudinary';
 const app = express();
 dotenv.config();
 
-app.use((req, res, next) => {
-    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin; same-origin-allow-popups');
-    next();
-  });
-  
+
 cloudinary.v2.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,

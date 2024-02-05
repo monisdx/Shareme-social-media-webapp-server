@@ -22,11 +22,7 @@ app.use(cors());
 
 app.use('/posts',postRoutes);
 app.use('/user',userRoutes);
-app.use("/", (req, res) => {
-    // const file = req.file;
-    // console.log(file);
-    console.log('hello')
-})
+
 
 const PORT = process.env.PORT || 5000;
 

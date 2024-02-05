@@ -5,10 +5,16 @@ import cors from 'cors';
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import dotenv from 'dotenv';
+import cloudinary from 'cloudinary';
 
 const app = express();
 dotenv.config();
 
+cloudinary.v2.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+});
 
 app.use(bodyParser.json({limit: "30mb", extended: true}));      //properly send a request. This body-parser module parses the JSON, buffer, string and URL encoded data submitted using HTTP POST request.
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
@@ -17,7 +23,9 @@ app.use(cors());
 app.use('/posts',postRoutes);
 app.use('/user',userRoutes);
 app.use("/", (req, res) => {
-    res.send("hello")
+    // const file = req.file;
+    // console.log(file);
+    console.log('hello')
 })
 
 const PORT = process.env.PORT || 5000;
